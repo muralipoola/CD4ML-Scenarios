@@ -3,6 +3,8 @@ from wickedhot import OneHotEncoder
 from cd4ml.train import get_trained_model
 from cd4ml.model_utils import get_target_id_features_lists
 import logging
+import mlflow.sklearn
+import mlflow
 
 from cd4ml.utils.utils import mini_batch_eval
 
@@ -78,6 +80,11 @@ class MLModel:
                                                encoded_training_data,
                                                target_data,
                                                self.random_seed)
+
+        mlflow.sklearn.log_model(sk_model = self.trained_model,
+                             artifact_path = 'wine-pyfile-model',
+                             registered_model_name = 'wine-pyfile-model')
+
 
         del encoded_training_data
 
