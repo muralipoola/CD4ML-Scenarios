@@ -81,10 +81,9 @@ class MLModel:
                                                target_data,
                                                self.random_seed)
 
-        mlflow.sklearn.log_model(sk_model = self.trained_model,
-                             artifact_path = 'wine-pyfile-model',
-                             registered_model_name = 'wine-pyfile-model')
-
+        mlflow.sklearn.log_model(sk_model=self.trained_model,
+                                artifact_path='wine-pyfile-model', # noqa
+                                registered_model_name='wine-pyfile-model') # noqa
 
         del encoded_training_data
 
