@@ -5,6 +5,7 @@ from cd4ml.model_utils import get_target_id_features_lists
 import logging
 import mlflow.sklearn
 import mlflow
+import os
 
 from cd4ml.utils.utils import mini_batch_eval
 
@@ -24,6 +25,7 @@ class MLModel:
         self.encoder = encoder
         self.feature_set = feature_set
         self.packaged_encoder = None
+        mlflow.set_tracking_uri(os.environ["MLFLOW_TRACKING_URL"])
 
     def load_encoder_from_package(self):
         self.logger.info('loading encoder from packaging')
